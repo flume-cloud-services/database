@@ -17,7 +17,7 @@ func Middleware(h http.Handler, middleware ...func(http.Handler) http.Handler) h
 
 func AuthMiddleware(next http.Handler) http.Handler {
 	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
-		admin := os.Getenv("FLUME_DATABASE_ADMIIN")
+		admin := os.Getenv("FLUME_DATABASE_ADMIN")
 		if len(admin) == 0 {
 			admin = "admin"
 		}

@@ -24,7 +24,7 @@ type Claims struct {
 
 // Signin handler to handle signin request
 func Signin(w http.ResponseWriter, r *http.Request) {
-	admin := os.Getenv("FLUME_DATABASE_ADMIIN")
+	admin := os.Getenv("FLUME_DATABASE_ADMIN")
 	if len(admin) == 0 {
 		admin = "admin"
 	}
