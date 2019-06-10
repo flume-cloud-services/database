@@ -1,7 +1,15 @@
 package main
 
-import "fmt"
+import (
+	"log"
+	"net/http"
+
+	"github.com/flume-cloud-services/database/controllers"
+)
 
 func main() {
-	fmt.Println("Hello World")
+	http.HandleFunc("/signin", controllers.Signin)
+
+	log.Println("Starting server on port :8080")
+	log.Fatal(http.ListenAndServe(":8080", nil))
 }
