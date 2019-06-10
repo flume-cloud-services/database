@@ -28,6 +28,16 @@ func main() {
 		middleware.AuthMiddleware,
 	))
 
+	http.Handle("/query", middleware.Middleware(
+		http.HandlerFunc(controllers.CreateQuery),
+		middleware.AuthMiddleware,
+	))
+
+	http.Handle("/insert", middleware.Middleware(
+		http.HandlerFunc(controllers.InsertData),
+		middleware.AuthMiddleware,
+	))
+
 	log.Println("Starting server on port :8080")
 	log.Fatal(http.ListenAndServe(":8080", nil))
 }
