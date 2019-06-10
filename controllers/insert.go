@@ -7,12 +7,14 @@ import (
 	"github.com/syndtr/goleveldb/leveldb"
 )
 
+// Insert struct
 type Insert struct {
 	Database string `json:"database"`
 	Table    string `json:"table"`
 	Content  string `json:"content"`
 }
 
+// InsertData into a specified table into a specified database
 func InsertData(w http.ResponseWriter, r *http.Request) {
 	var content Insert
 	err := json.NewDecoder(r.Body).Decode(&content)

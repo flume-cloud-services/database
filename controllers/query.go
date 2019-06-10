@@ -8,11 +8,13 @@ import (
 	"github.com/syndtr/goleveldb/leveldb"
 )
 
+// Query struct
 type Query struct {
 	Name    string `json:"database"`
 	Content string `json:"query"`
 }
 
+// CreateQuery compile query and lookup for results on a specified database
 func CreateQuery(w http.ResponseWriter, r *http.Request) {
 	var queryStr Query
 	err := json.NewDecoder(r.Body).Decode(&queryStr)

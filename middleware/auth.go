@@ -8,6 +8,7 @@ import (
 	"github.com/flume-cloud-services/database/controllers"
 )
 
+// Middleware allows to use multiple middleware on a single route
 func Middleware(h http.Handler, middleware ...func(http.Handler) http.Handler) http.Handler {
 	for _, mw := range middleware {
 		h = mw(h)
@@ -15,6 +16,7 @@ func Middleware(h http.Handler, middleware ...func(http.Handler) http.Handler) h
 	return h
 }
 
+// AuthMiddleware manage auth via JWT
 func AuthMiddleware(next http.Handler) http.Handler {
 	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 		admin := os.Getenv("FLUME_DATABASE_ADMIN")
