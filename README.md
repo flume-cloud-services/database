@@ -5,7 +5,9 @@
 
 ### Docker
 
-Docker is coming
+```bash
+docker run -d -p 8080:8080 flumecloudservices/cloud 
+```
 
 ### Manually
 
