@@ -10,13 +10,23 @@ import (
 )
 
 func main() {
+	http.HandleFunc("/signin", controllers.Signin)
+
 	http.Handle("/welcome", middleware.Middleware(
 		http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 			io.WriteString(w, "Welcome to you visitor !")
 		}),
 		middleware.AuthMiddleware,
 	))
-	http.HandleFunc("/signin", controllers.Signin)
+
+	http.Handle("/database/create", middleware.Middleware(
+		http.HandlerFunc(controllers.CreateDatabase),
+		middleware.AuthMiddleware,
+	))
+	http.Handle("/database/delete", middleware.Middleware(
+		http.HandlerFunc(controllers.DeleteDatabase),
+		middleware.AuthMiddleware,
+	))
 
 	log.Println("Starting server on port :8080")
 	log.Fatal(http.ListenAndServe(":8080", nil))
