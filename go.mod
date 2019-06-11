@@ -4,7 +4,7 @@ go 1.12
 
 require (
 	github.com/dgrijalva/jwt-go v3.2.0+incompatible
-	github.com/oliveagle/jsonpath v0.0.0-20180606110733-2e52cf6e6852
+	github.com/stretchr/testify v1.3.0 // indirect
 	github.com/syndtr/goleveldb v1.0.0
 	github.com/tidwall/gjson v1.2.1
 	github.com/tidwall/match v1.0.1 // indirect
