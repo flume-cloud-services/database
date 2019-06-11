@@ -4,8 +4,8 @@ import (
 	"encoding/json"
 	"net/http"
 
-	"github.com/oliveagle/jsonpath"
 	"github.com/syndtr/goleveldb/leveldb"
+	"github.com/tidwall/gjson"
 )
 
 // Query struct
@@ -37,14 +37,7 @@ func CreateQuery(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	var json_data interface{}
-	json.Unmarshal([]byte(data), &json_data)
-	pat, _ := jsonpath.Compile(queryStr.Content)
-	res, err := pat.Lookup(json_data)
-	if err != nil {
-		w.WriteHeader(http.StatusBadRequest)
-		return
-	}
+	res := gjson.Get(string(data), queryStr.Content)
 
 	json.NewEncoder(w).Encode(res)
 

@@ -1,5 +1,5 @@
 # FCS Database
-`Golang Database` via **HTTP** using *LevelDB* and *JsonPATH* (by Flume Cloud Services)
+`Golang Database` via **HTTP** using *LevelDB* and *GJSON & SJSON* (by Flume Cloud Services)
 
 ## Installation
 
@@ -83,14 +83,14 @@ Return:
         - Internal Server Error Status
 ```
 
-Then you have to insert data into a specific table using `/insert` :
+Then you have to insert data into a specific table using [SJSON](https://github.com/tidwall/sjson) (I recommend you to know the basics of [GJSON Syntax](https://github.com/tidwall/gjson#path-syntax)) and the route `/insert` :
 
 ```
 POST /insert
 
 Body:
     - database: The database name
-    - table: The table name
+    - query: The GJSON query
     - content: The JSON stringified content of the table
 
 Return:
@@ -101,14 +101,14 @@ Return:
         - Internal Server Error Status
 ```
 
-Now you can query your database unsing [JsonPATH](https://support.smartbear.com/alertsite/docs/monitors/api/endpoint/jsonpath.html) (I recommend you to know the basics of JsonPATH) and the `/query` route :
+Now you can query your database using [GJSON](https://github.com/tidwall/gjson) (I recommend you to know the basics of [GJSON Syntax](https://github.com/tidwall/gjson#path-syntax)) and the `/query` route :
 
 ```
 POST /query
 
 Body:
     - name: The database name
-    - query: The JsonPATH query
+    - query: The GJSON query
 
 Return:
     - If success :
@@ -118,10 +118,15 @@ Return:
         - Internal Server Error Status
 ```
 
-### How to query
+### Example of Query
 
-`$` will return the specified database and its content
+Query : `table.0.key` 
 
-`$.table` will return the specified table and its content
+Give the specified key into the specified table at the index '0'
 
-You can now query the table as you want !
+### Example of Insert
+
+Query : `table.0.key` 
+Content : `Key Content`
+
+Set the specified content into the specified key into the specified table at the index '0'
