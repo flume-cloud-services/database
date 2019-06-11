@@ -9,4 +9,5 @@ require (
 	github.com/tidwall/gjson v1.2.1
 	github.com/tidwall/match v1.0.1 // indirect
 	github.com/tidwall/pretty v1.0.0 // indirect
+	github.com/tidwall/sjson v1.0.4
 )

@@ -39,6 +39,7 @@ func CreateQuery(w http.ResponseWriter, r *http.Request) {
 
 	res := gjson.Get(string(data), queryStr.Content)
 
-	json.NewEncoder(w).Encode(res)
+	w.Header().Set("Content-Type", "application/json")
+	json.NewEncoder(w).Encode(res.String())
 
 }

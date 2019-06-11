@@ -5,12 +5,13 @@ import (
 	"net/http"
 
 	"github.com/syndtr/goleveldb/leveldb"
+	"github.com/tidwall/sjson"
 )
 
 // Insert struct
 type Insert struct {
 	Database string `json:"database"`
-	Table    string `json:"table"`
+	Query    string `json:"query"`
 	Content  string `json:"content"`
 }
 
@@ -37,24 +38,18 @@ func InsertData(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	var result map[string]interface{}
-	json.Unmarshal([]byte(data), &result)
-
-	var contentResult []map[string]interface{}
-	json.Unmarshal([]byte(content.Content), &contentResult)
-	result[content.Table] = contentResult
-
-	dataByte, err := json.Marshal(result)
+	res, err := sjson.Set(string(data), content.Query, content.Content)
 	if err != nil {
 		w.WriteHeader(http.StatusInternalServerError)
 		return
 	}
 
-	err = db.Put([]byte(content.Database), dataByte, nil)
+	err = db.Put([]byte(content.Database), []byte(res), nil)
 	if err != nil {
 		w.WriteHeader(http.StatusInternalServerError)
 		return
 	}
 
-	json.NewEncoder(w).Encode("Data successfully inserted into table " + content.Table)
+	w.Header().Set("Content-Type", "application/json")
+	json.NewEncoder(w).Encode("Data successfully inserted into table ")
 }

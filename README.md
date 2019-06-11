@@ -95,7 +95,7 @@ Body:
 
 Return:
     - If success :
-        - Data successfully inserted into table <table>
+        - Data successfully inserted into table
     - If failed :
         - Bad Request Status
         - Internal Server Error Status
