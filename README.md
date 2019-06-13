@@ -1,4 +1,10 @@
-# FCS Database
+<p align="center">
+  <img src="https://raw.githubusercontent.com/dimensi0n/flume/master/.github/logo.png" width="400"/>
+</p>
+
+<hr>
+
+# Database
 `Golang Database` via **HTTP** using *LevelDB* and *GJSON & SJSON* (by Flume Cloud Services)
 
 ## Installation
