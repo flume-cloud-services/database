@@ -12,14 +12,14 @@
 ### Docker
 
 ```bash
-docker run -d -p 8080:8080 flumecloudservices/cloud 
+docker run -d -p 8080:8080 flumecloudservices/database 
 ```
 
 ### Manually
 
 ```bash
 mkdir $GOPATH/src/github.com/flume-cloud-services && cd $GOPATH/src/github.com/flume-cloud-services
-git clone https://github.com/flume-cloud-services/database.git
+git clone https://github.com/flume-cloud-services/database.git && cd database
 go get -d -v
 go install -v
 
@@ -34,7 +34,7 @@ Use the `signin` route with the following body to generate the JWT token :
 POST /signin
 
 Body:
-    - name: The admin name given in FLUME_DATABASE_ADMIN by default it's simply "admin"
+    - username: The admin name given in FLUME_DATABASE_ADMIN by default it's simply "admin"
 
 Return:
     - If success :
