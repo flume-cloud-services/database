@@ -29,7 +29,7 @@ func CreateDatabase(w http.ResponseWriter, r *http.Request) {
 
 	defer db.Close()
 
-	err = db.Put([]byte(database.Name), []byte("[]"), nil)
+	err = db.Put([]byte(database.Name), []byte("{}"), nil)
 	if err != nil {
 		w.WriteHeader(http.StatusInternalServerError)
 		return
