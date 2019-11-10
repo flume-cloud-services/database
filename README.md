@@ -12,7 +12,7 @@
 ### Docker
 
 ```bash
-docker run -d -p 8080:8080 flumecloudservices/database 
+docker run -d -p 8080:8080 flumecloudservices/database
 ```
 
 ### Manually
@@ -126,13 +126,17 @@ Return:
 
 ### Example of Query
 
-Query : `table.0.key` 
+Query : `table.0.key`
 
 Give the specified key into the specified table at the index '0'
 
 ### Example of Insert
 
-Query : `table.0.key` 
+Query : `table.0.key`
 Content : `Key Content`
 
 Set the specified content into the specified key into the specified table at the index '0'
+
+### Dashboard
+
+You can access the dashboard here `/dash` by giving the admin name and the secret.
